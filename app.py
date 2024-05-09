@@ -1,15 +1,16 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
 import pickle
-from config import MONGO_URI
-
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
 
+mongo_uri = os.getenv("MONGO_URI")
 
 # Create a new client and connect to the server
 try:
-    client = MongoClient(MONGO_URI)
+    client = MongoClient(mongo_uri)
     db = client.myDatabase
     collection = db["predictions"]
 except Exception as e:
