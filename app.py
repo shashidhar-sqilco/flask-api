@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify
 from pymongo import MongoClient
+from flask_cors import CORS
 import pickle
 from dotenv import load_dotenv
 import os
 
 app = Flask(__name__)
-
+CORS(app)
 mongo_uri = os.getenv("MONGO_URI")
 
 # Create a new client and connect to the server
