@@ -8,17 +8,26 @@ import snowflake.connector
 
 app = Flask(__name__)
 CORS(app)
+load_dotenv()
 
 mongo_uri = os.getenv("MONGO_URI")
 
-# Connect to Snowflake account
+# Retrieve Snowflake credentials from environment variables
+account = os.getenv('SNOWFLAKE_ACCOUNT')
+user = os.getenv('SNOWFLAKE_USER')
+password = os.getenv('SNOWFLAKE_PASSWORD')
+warehouse = os.getenv('SNOWFLAKE_WAREHOUSE')
+database = os.getenv('SNOWFLAKE_DATABASE')
+schema = os.getenv('SNOWFLAKE_SCHEMA')
+
+# Connect to Snowflake
 conn = snowflake.connector.connect(
-    account='ixzsmyp-jr08929',
-    user='anujsqilco',
-    password='Sqilco@1',
-    warehouse='AMALWEBFORMULER',
-    database='WEBFORMULER',
-    schema='WEBFORMULER'
+    account=account,
+    user=user,
+    password=password,
+    warehouse=warehouse,
+    database=database,
+    schema=schema
 )
 cur = conn.cursor()
 
